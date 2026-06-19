@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     todos: [],
 };
-    
+
 const taskSlice = createSlice({
     name: "todo",
     initialState,
@@ -14,9 +14,7 @@ const taskSlice = createSlice({
             },
             prepare: (text) => ({
                 payload: {
-                    id: Date.now(),
-                    text,
-                    done: false,
+                    id: Date.now(), text, done: false,
                 },
             }),
         },
@@ -36,13 +34,20 @@ const taskSlice = createSlice({
                 todo.done = !todo.done;
             }
         },
+
+        editTodo: (state, action) => {
+            const { id, text } = action.payload;
+            const todo = state.todos.find((todo) => todo.id === id);
+
+            if (todo) {
+                todo.text = text;
+            }
+        }
     },
 });
 
-export const {
-    addTodo,
-    removeTodo,
-    toggleTodo,
-} = taskSlice.actions;
+export const { addTodo, removeTodo, toggleTodo, editTodo } = taskSlice.actions;
 
 export default taskSlice.reducer;
+
+

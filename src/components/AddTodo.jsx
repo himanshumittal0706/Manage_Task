@@ -20,22 +20,12 @@ function AddTodo() {
     return (
         <section className="add-todo-section">
             <div className="add-todo-card">
-                <h2 className="add-todo-title">
-                    Add New Todo
-                </h2>
+                <h2 className="add-todo-title">Add New Todo</h2>
 
-                <form
-                    onSubmit={addTodoHandler}
-                    className="add-todo-form"
-                >
-                    <input type="text" value={input} placeholder="What needs to be done?" onChange={(e) => setInput(e.target.value)}
-                        className="add-todo-input"
-                    />
+                <form onSubmit={addTodoHandler} className="add-todo-form">
+                    <input type="text" value={input} placeholder="What needs to be done?" onChange={(e) => setInput(e.target.value)} className="add-todo-input" />
 
-                    <button
-                        type="submit"
-                        className="add-todo-button"
-                    >
+                    <button type="submit" className="add-todo-button">
                         Add
                     </button>
                 </form>
@@ -45,5 +35,7 @@ function AddTodo() {
 }
 
 export default AddTodo;
+
+
 
 

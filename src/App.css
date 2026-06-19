@@ -12,6 +12,51 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Inline edit input — should stretch to fill the flex gap */
+.todo-edit-input {
+  flex: 1;
+  padding: 4px 10px;
+  border: 1.5px solid #6366f1;
+  /* highlight so user knows it's active */
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+/* Confirm button (green) */
+.todo-confirm-btn {
+  color: #22c55e;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.todo-confirm-btn:hover {
+  background: #f0fdf4;
+}
+
+/* Cancel button (red) */
+.todo-cancel-btn {
+  color: #ef4444;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.todo-cancel-btn:hover {
+  background: #fef2f2;
+}
+
+/* Highlight the row while editing */
+.todo-item.editing {
+  background: #fafafa;
+  border-color: #e0e7ff;
+}
+
 .app-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
@@ -267,6 +312,20 @@ body {
   justify-content: center;
 }
 
+.todo-edit-btn {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #d1d5db;
+  padding: 6px;
+  border-radius: 8px;
+  transition: all 200ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .todo-delete-btn:hover {
   color: #ef4444;
   background-color: #fef2f2;
@@ -276,3 +335,15 @@ body {
 .todo-delete-btn:active {
   transform: scale(0.95);
 }
+
+.todo-edit-btn:hover {
+  color: #3b82f6;
+  background-color: #f0f9ff;
+  transform: scale(1.1);
+}
+
+.todo-edit-btn:active {
+  transform: scale(0.95);
+}
+
+
