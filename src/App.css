@@ -298,20 +298,7 @@ body {
   color: #d1d5db;
 }
 
-.todo-delete-btn {
-  flex-shrink: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #d1d5db;
-  padding: 6px;
-  border-radius: 8px;
-  transition: all 200ms ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
+.todo-delete-btn,
 .todo-edit-btn {
   flex-shrink: 0;
   background: none;
@@ -345,5 +332,6 @@ body {
 .todo-edit-btn:active {
   transform: scale(0.95);
 }
+
 
 

@@ -1,24 +1,23 @@
 import React from 'react'
-import './App.css'
-import AddTodo from './components/AddTodo'
-import Todos from './components/Todos'
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AddTodo } from './components/AddTodo';
+import { NotFound } from './Pages/notFound';
 
 function App() {
   return (
-    <div className="app-container">
-      <div className="app-wrapper">
-        <div className="app-header">
-          <h2 className="app-title">Manage Tasks</h2>
-          <p className="app-subtitle">Stay organized and productive</p>
-        </div>
-        <AddTodo />
-        <Todos />
-      </div>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AddTodo />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
+
+
 
 
 
