@@ -1,11 +1,11 @@
-import { addTodo } from "../features/task/taskSlice";
 import { useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeTodo, toggleTodo, editTodo } from "../features/task/taskSlice";
+import { removeTodo, toggleTodo, editTodo } from "../store/slices/taskSlice";
 import { Delete, CheckCircleOutlined, CheckCircle, Edit, Check, Close } from "@mui/icons-material";
+import { addTodo } from "../store/slices/taskSlice";
 
 
-export const AddTodo = () => {
+export const TaskPage = () => {
     return (
         <div className="app-container">
             <div className="app-wrapper">
@@ -55,12 +55,10 @@ export const AddTodos = () => {
 
 export const Todos = () => {
     const dispatch = useDispatch();
-    const todos = useSelector((state) => state.todo?.todos || []);
+    const todos = useSelector((state) => state.taskAPI?.todos || []);
 
     const [filter, setFilter] = useState("all");
 
-    // editingId  → which todo is currently being edited
-    // editText   → the live value in the inline input
     const [editingId, setEditingId] = useState(null);
     const [editText, setEditText] = useState("");
 
@@ -149,7 +147,6 @@ export const Todos = () => {
                             return (
                                 <li key={todo.id} className={`todo-item ${isEditing ? "editing" : ""}`}>
 
-                                    {/* Check / toggle — hidden while editing */}
                                     {!isEditing && (
                                         <button
                                             type="button"
