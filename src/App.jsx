@@ -1,7 +1,7 @@
 import React from 'react'
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { NotFound } from './Pages/notFound';
+import { NotFound } from './Pages/NotFound';
 import { TaskPage } from './Pages/TaskPage';
 import { TodoApp } from './Pages/TodoPage';
 
