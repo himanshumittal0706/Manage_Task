@@ -4,7 +4,6 @@ import { removeTodo, toggleTodo, editTodo } from "../store/slices/taskSlice";
 import { Delete, CheckCircleOutlined, CheckCircle, Edit, Check, Close } from "@mui/icons-material";
 import { addTodo } from "../store/slices/taskSlice";
 
-
 export const TaskPage = () => {
     return (
         <div className="app-container">
@@ -225,6 +224,7 @@ export const Todos = () => {
         </section>
     );
 }
+
 
 
 

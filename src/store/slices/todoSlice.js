@@ -12,8 +12,18 @@ export const fetchAllTodos = createAsyncThunk("todo/fetchAllTodos", async (_, { 
             error.response?.data?.message || error.message
         );
     }
-}
-);
+});
+
+export const fetchTodoById = createAsyncThunk("todo/fetchTodoById", async (id, { rejectWithValue }) => {
+    try {
+        const response = await axios.get(`${BASE_URL}/${id}`);
+        return response.data;
+    } catch (error) {
+        return rejectWithValue(
+            error.response?.data?.message || error.message
+        );
+    }
+});
 
 const todoAPISlice = createSlice({
     name: "todoAPI",
@@ -21,6 +31,7 @@ const todoAPISlice = createSlice({
         loading: false,
         error: null,
         todos: [],
+        singleTodo: null
     },
     reducers: {},
 
@@ -37,7 +48,21 @@ const todoAPISlice = createSlice({
             .addCase(fetchAllTodos.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
-            });
+            })
+
+            // --fetchTodoByID--
+            .addCase(fetchTodoById.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchTodoById.fulfilled, (state, action) => {
+                state.loading = false;
+                state.singleTodo = action.payload;
+            })
+            .addCase(fetchTodoById.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
     },
 });
 
@@ -288,5 +313,6 @@ export default todoAPISlice.reducer;
 // export const { clearSelectedTodo, clearError, clearAllTodos, toggleTodoComplete } = todoSlice.actions;
 
 // export default todoSlice.reducer;
+
 
 
