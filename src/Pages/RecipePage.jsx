@@ -1,20 +1,33 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchReceipe } from "../store/slices/recipeSlice";
-import { Container, Row, Col, Card, Badge, } from "react-bootstrap";
-import { Rating, Chip, Divider, } from "@mui/material";
+import { Container, Row, Col, Card, Badge } from "react-bootstrap";
+import { Rating, Chip, Divider } from "@mui/material";
+
 import { Loader } from "../utils/Loader";
 import { Error } from "../utils/Error";
-
+import { AddRecipeDialog } from "../utils/Dialog";
 
 export const RecipePage = () => {
     const dispatch = useDispatch();
 
-    const { loading, error, recipes } = useSelector((state) => state.receipeAPI);
+    const { loading, error, recipes } = useSelector(
+        (state) => state.receipeAPI
+    );
+
+    const [openRecipeDialog, setOpenRecipeDialog] = useState(false);
 
     useEffect(() => {
         dispatch(fetchReceipe());
     }, [dispatch]);
+
+    const handleOpen = () => {
+        setOpenRecipeDialog(true);
+    };
+
+    const handleClose = () => {
+        setOpenRecipeDialog(false);
+    };
 
     if (loading) return <Loader />;
     if (error) return <Error />;
@@ -22,29 +35,55 @@ export const RecipePage = () => {
     return (
         <Container fluid className="recipe-container">
             <Row>
+                <div className="text-center my-4">
+                    <button
+                        className="btn btn-danger px-5"
+                        onClick={handleOpen}
+                    >
+                        Add Recipe
+                    </button>
+                </div>
+
                 {recipes?.map((recipe) => (
-                    <Col key={recipe.id} xxl={4} xl={4} lg={6} md={6} sm={12} xs={12} className="mb-4">
-                        <Card className="recipe-card shadow-lg">
-                            <Card.Img variant="top" src={recipe.image} className="recipe-image" />
-
+                    <Col
+                        key={recipe.id}
+                        xxl={3}
+                        xl={3}
+                        lg={4}
+                        md={6}
+                        sm={12}
+                        xs={12}
+                        className="mb-4"
+                    >
+                        <Card className="recipe-card shadow">
                             <Card.Body>
-                                <Card.Title className="recipe-title"> {recipe.name}</Card.Title>
+                                <Card.Title>
+                                    {recipe.name}
+                                </Card.Title>
 
-                                <div className="mb-3">
+                                <div className="mb-2">
                                     <Badge bg="success" className="me-2">
                                         {recipe.cuisine}
                                     </Badge>
 
-                                    <Badge bg="warning">{recipe.difficulty}</Badge>
+                                    <Badge bg="warning">
+                                        {recipe.difficulty}
+                                    </Badge>
                                 </div>
 
-                                <Rating value={recipe.rating} precision={0.1} readOnly />
+                                <Rating
+                                    value={recipe.rating}
+                                    precision={0.1}
+                                    readOnly
+                                />
 
-                                <p className="review-count">{recipe.reviewCount} Reviews </p>
+                                <p>
+                                    {recipe.reviewCount} Reviews
+                                </p>
 
-                                <Divider className="mb-3" />
+                                <Divider />
 
-                                <div className="recipe-info">
+                                <div className="mt-2">
                                     <p>
                                         🍽 Servings:
                                         <strong>
@@ -55,32 +94,29 @@ export const RecipePage = () => {
                                     <p>
                                         ⏱ Prep:
                                         <strong>
-                                            {recipe.prepTimeMinutes} mins
+                                            {recipe.prepTimeMinutes}
+                                            mins
                                         </strong>
                                     </p>
 
                                     <p>
                                         🔥 Cook:
                                         <strong>
-                                            {recipe.cookTimeMinutes} mins
-                                        </strong>
-                                    </p>
-
-                                    <p>
-                                        🥗 Calories:
-                                        <strong>
-                                            {recipe.caloriesPerServing}
+                                            {recipe.cookTimeMinutes}
+                                            mins
                                         </strong>
                                     </p>
                                 </div>
 
-                                <Divider className="mb-3" />
+                                <Divider />
 
-                                <h6>Ingredients</h6>
+                                <h6 className="mt-2">
+                                    Ingredients
+                                </h6>
 
-                                <ul className="ingredient-list">
+                                <ul>
                                     {recipe.ingredients
-                                        ?.slice(0, 5)
+                                        ?.slice(0, 4)
                                         .map((item, index) => (
                                             <li key={index}>
                                                 {item}
@@ -88,33 +124,30 @@ export const RecipePage = () => {
                                         ))}
                                 </ul>
 
-                                <Divider className="mb-3" />
+                                <Divider />
 
-                                <h6>Tags</h6>
-
-                                <div className="tag-container">
-                                    {recipe.tags?.map((tag, index) => (
-                                        <Chip key={index} label={tag} size="small" className="tag-chip" />
-                                    ))}
+                                <div className="mt-2">
+                                    {recipe.tags?.map(
+                                        (tag, index) => (
+                                            <Chip
+                                                key={index}
+                                                label={tag}
+                                                size="small"
+                                                sx={{
+                                                    mr: 1,
+                                                    mb: 1,
+                                                }}
+                                            />
+                                        )
+                                    )}
                                 </div>
-
-                                <Divider className="mb-3" />
-
-                                <h6>Meal Type</h6>
-
-                                {recipe.mealType?.map(
-                                    (meal, index) => (
-                                        <Chip key={index} label={meal} color="primary" size="small" sx={{ mr: 1 }} />
-                                    )
-                                )}
                             </Card.Body>
                         </Card>
                     </Col>
                 ))}
             </Row>
+            <AddRecipeDialog open={openRecipeDialog} handleClose={handleClose} />
         </Container>
     );
 };
-
-
 
