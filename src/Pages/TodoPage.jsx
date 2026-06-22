@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllTodos, fetchTodoById } from "../store/slices/todoSlice";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { FetchByIdDialog } from "../utils/Dialog";
+import { Loader } from "../utils/Loader";
 
 export const TodoApp = () => {
   return (
@@ -32,11 +33,7 @@ export const FetchTodo = () => {
   }, [dispatch]);
 
 
-  if (loading) return <div className="loader-overlay">
-    <Spinner animation="border" role="status">
-      <span className="visually-hidden">Loading...</span>
-    </Spinner>
-  </div>
+  if (loading) return <Loader />
 
   if (error) return <h2>{error}</h2>;
 

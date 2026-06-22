@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { NotFound } from './Pages/NotFound';
 import { TaskPage } from './Pages/TaskPage';
 import { TodoApp } from './Pages/TodoPage';
+import { RecipePage } from './Pages/RecipePage';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<TaskPage />} />
         <Route path="/todo-app" element={<TodoApp />} />
+        <Route path="/recipe-app" element={<RecipePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
@@ -18,6 +20,8 @@ function App() {
 }
 
 export default App;
+
+
 
 
 
