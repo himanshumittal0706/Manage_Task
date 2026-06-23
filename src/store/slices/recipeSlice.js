@@ -24,12 +24,22 @@ export const addReceipe = createAsyncThunk("recipe/addReceipe", async (recipeDat
                 },
             }
         )
-
         return response.data;
     } catch (error) {
         return rejectWithValue(
             error.response?.data?.message || error.message
         );
+    }
+})
+
+export const recipeSearch = createAsyncThunk("recipe/searchRecipe", async (searchTerm, { rejectWithValue }) => {
+    try {
+        const response = await axios.get(`${BASE_RECEIPE_URL}/search?q=${searchTerm}`);
+        return response.data.recipes;
+    } catch (error) {
+        return rejectWithValue(
+            error.response?.data?.message || error.message
+        )
     }
 })
 
@@ -71,10 +81,24 @@ const recipeSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload;
             })
+
+            .addCase(recipeSearch.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(recipeSearch.fulfilled, (state, action) => {
+                state.loading = false;
+                state.recipes = action.payload;
+            })
+            .addCase(recipeSearch.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
     }
 })
 
 export default recipeSlice.reducer;
+
 
 
 
