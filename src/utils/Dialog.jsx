@@ -1,10 +1,10 @@
 
-import React, { useState } from "react";
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Slide } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { addReceipe } from "../store/slices/recipeSlice";
+import { useState, forwardRef } from "react";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Slide, DialogContentText } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { addRecipe } from "../store/slices/recipeSlice";
 
-const Transition = React.forwardRef(function Transition(props, ref) { return <Slide direction="up" ref={ref} {...props} /> });
+const Transition = forwardRef(function Transition(props, ref) { return <Slide direction="up" ref={ref} {...props} /> });
 
 export const FetchByIdDialog = ({ open, handleClose }) => {
 
@@ -12,8 +12,8 @@ export const FetchByIdDialog = ({ open, handleClose }) => {
 
     return (
         <section>
-            <Dialog open={open} onClose={handleClose} slots={{ transition: Transition, }} keepMounted onClose={handleClose} aria-describedby="alert-dialog-slide-description" role="alertdialog">
-                <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+            <Dialog open={open} slots={{ transition: Transition }} keepMounted onClose={handleClose} aria-describedby="alert-dialog-slide-description" role="alertdialog">
+                <DialogTitle>Todo Details</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
                         <p>ID: {singleTodo?.id}</p>
@@ -42,7 +42,7 @@ export const AddRecipeDialog = ({ open, handleClose }) => {
 
     const handleSubmit = () => {
         dispatch(
-            addReceipe({
+            addRecipe({
                 ...formData,
 
                 ingredients: [
@@ -70,7 +70,7 @@ export const AddRecipeDialog = ({ open, handleClose }) => {
     };
 
     return (
-        <Dialog open={open} onClose={handleClose} TransitionComponent={Transition} fullWidth maxWidth="sm" >
+        <Dialog open={open} onClose={handleClose} slots={{ transition: Transition }} fullWidth maxWidth="sm" >
             <DialogTitle>Add Recipe</DialogTitle>
 
             <DialogContent>

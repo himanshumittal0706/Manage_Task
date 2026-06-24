@@ -3,7 +3,7 @@ import axios from "axios";
 
 const BASE_RECEIPE_URL = "https://dummyjson.com/recipes";
 
-export const fetchReceipe = createAsyncThunk("recipe/fetchAllRecipe", async (_, { rejectWithValue }) => {
+export const fetchRecipe = createAsyncThunk("recipe/fetchAllRecipe", async (_, { rejectWithValue }) => {
     try {
         const response = await axios.get(BASE_RECEIPE_URL);
         return response.data.recipes;
@@ -14,7 +14,7 @@ export const fetchReceipe = createAsyncThunk("recipe/fetchAllRecipe", async (_, 
     }
 })
 
-export const addReceipe = createAsyncThunk("recipe/addReceipe", async (recipeData, { rejectWithValue }) => {
+export const addRecipe = createAsyncThunk("recipe/addRecipe", async (recipeData, { rejectWithValue }) => {
     try {
         const response = await axios.post(`${BASE_RECEIPE_URL}/add`,
             recipeData,
@@ -44,7 +44,7 @@ export const recipeSearch = createAsyncThunk("recipe/searchRecipe", async (searc
 })
 
 const recipeSlice = createSlice({
-    name: "receipeAPI",
+    name: "recipeAPI",
     initialState: {
         loading: false,
         error: null,
@@ -55,29 +55,29 @@ const recipeSlice = createSlice({
 
     extraReducers: (builder) => {
         builder
-            .addCase(fetchReceipe.pending, (state) => {
+            .addCase(fetchRecipe.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchReceipe.fulfilled, (state, action) => {
+            .addCase(fetchRecipe.fulfilled, (state, action) => {
                 state.loading = false;
                 state.recipes = action.payload;
             })
-            .addCase(fetchReceipe.rejected, (state, action) => {
+            .addCase(fetchRecipe.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             })
 
-            .addCase(addReceipe.pending, (state) => {
+            .addCase(addRecipe.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(addReceipe.fulfilled, (state, action) => {
+            .addCase(addRecipe.fulfilled, (state, action) => {
                 state.loading = false;
                 state.success = "Recipe added Successfully"
                 state.recipes.unshift(action.payload);
             })
-            .addCase(addReceipe.rejected, (state, action) => {
+            .addCase(addRecipe.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             })

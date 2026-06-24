@@ -1,0 +1,151 @@
+.todo-app-section {
+  min-height: calc(100vh - 64px);
+  background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
+}
+
+.todo-container {
+  max-width: 1200px !important;
+  margin: 0 auto;
+  padding: 40px 24px !important;
+}
+
+.todo-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.todo-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.todo-title-icon {
+  font-size: 32px;
+}
+
+.todo-subtitle {
+  font-size: 16px;
+  color: #64748b;
+  margin: 0;
+}
+
+.todo-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.todo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  border-color: #e0e7ff;
+}
+
+.todo-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+}
+
+.todo-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  align-self: flex-start;
+}
+
+.todo-status-badge.completed {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.todo-status-badge.pending {
+  background: #fefce8;
+  color: #ca8a04;
+}
+
+.todo-card-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #334155;
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.todo-detail-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f8fafc;
+  color: #6366f1;
+  border: 1px solid #e2e8f0;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+}
+
+.todo-detail-btn:hover {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+  transform: scale(1.02);
+}
+
+.todo-detail-btn:active {
+  transform: scale(0.98);
+}
+
+.todo-error {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #dc2626;
+}
+
+.todo-empty {
+  text-align: center;
+  padding: 80px 24px;
+}
+
+.todo-empty-icon {
+  font-size: 64px;
+  margin: 0 0 16px 0;
+}
+
+.todo-empty-text {
+  font-size: 18px;
+  color: #94a3b8;
+  font-weight: 500;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .todo-container {
+    padding: 24px 16px !important;
+  }
+
+  .todo-title {
+    font-size: 28px;
+  }
+}

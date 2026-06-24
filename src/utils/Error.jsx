@@ -1,16 +1,10 @@
-import { useSelector } from "react-redux";
-
-
-export const Error = () => {
-
-    const { error } = useSelector((state) => state.receipeAPI);
-
+export const Error = ({ message = "Something went wrong. Please try again." }) => {
     return (
         <section>
             <div className="error-container">
                 <div className="error-card">
                     <h2>⚠️ Oops!</h2>
-                    <p>{error}</p>
+                    <p>{message}</p>
                 </div>
             </div>
         </section>

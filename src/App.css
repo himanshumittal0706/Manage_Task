@@ -334,74 +334,12 @@ body {
 }
 
 
-.recipe-container {
-  padding: 30px;
-  background: #f5f7fa;
-  min-height: 100vh;
-}
-
-.recipe-card {
-  border: none;
-  border-radius: 16px;
-  overflow: hidden;
-  transition: 0.3s ease;
-}
-
-.recipe-card:hover {
-  transform: translateY(-8px);
-}
-
-.recipe-image {
-  height: 250px;
-  object-fit: cover;
-}
-
-.recipe-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-
-.review-count {
-  color: #666;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-.recipe-info p {
-  margin-bottom: 8px;
-}
-
-.ingredient-list {
-  padding-left: 20px;
-}
-
-.ingredient-list li {
-  margin-bottom: 5px;
-}
-
-.tag-container {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.tag-chip {
-  margin-bottom: 8px;
-}
-
-
-/* --------------- Start Error CSS ------------------- */
-
-.error-container {
-  min-height: 100vh;
+/* Error CSS */.error-container {
+  min-height: calc(100vh - 64px);
   display: flex;
   justify-content: center;
   align-items: center;
-
-  background: linear-gradient(135deg,
-      #f8fafc,
-      #e2e8f0);
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
 }
 
 .error-card {
@@ -461,4 +399,3 @@ body {
 }
 
 
-/* --------------- End Error CSS ------------------- */
