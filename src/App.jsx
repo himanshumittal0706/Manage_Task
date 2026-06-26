@@ -5,6 +5,7 @@ import { TaskPage } from "./Pages/TaskPage";
 import { TodoApp } from "./Pages/TodoPage";
 import { RecipePage } from "./Pages/RecipePage";
 import { Navbar } from "./Components/Navbar";
+import { Products } from "./Pages/Product";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<TaskPage />} />
         <Route path="/todo-app" element={<TodoApp />} />
         <Route path="/recipe-app" element={<RecipePage />} />
+        <Route path="/product" element={<Products />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

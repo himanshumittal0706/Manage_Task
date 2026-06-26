@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipe } from "../store/slices/recipeSlice";
 import { Container, Row, Col } from "react-bootstrap";
 import { Rating } from "@mui/material";
-
 import { Loader } from "../utils/Loader";
 import { Error } from "../utils/Error";
 import { AddRecipeDialog } from "../utils/Dialog";
@@ -65,9 +64,9 @@ export const RecipePage = () => {
                         filteredRecipes.map((recipe) => (
                             <Col key={recipe.id} xxl={3} xl={3} lg={4} md={6} sm={12} xs={12}>
                                 <div className="recipe-card">
-                                    <div className="recipe-card-img">
+                                    {/* <div className="recipe-card-img">
                                         <span className="recipe-card-img-icon">🍽️</span>
-                                    </div>
+                                    </div> */}
                                     <div className="recipe-card-body">
                                         <h3 className="recipe-card-name">{recipe.name}</h3>
 
@@ -134,5 +133,8 @@ export const RecipePage = () => {
         </div>
     );
 };
+
+
+
 
 
